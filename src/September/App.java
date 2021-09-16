@@ -9,19 +9,19 @@ import java.util.*;
  * @email 2867405686@qq.com
  */
 public class App {
-    private Integer[][] originalValues;//存储原始的成本数组
-    private Integer[][] processValues;//用于变化的成本数组
-    List<Integer> rowIndex=new ArrayList<Integer>();//存放没有-1的行下标
-    List<Integer> colIndex=new ArrayList<Integer>();//存放没有-1的行中有-2的下标
-    private Map<Integer, Integer> indexMap=new HashMap<Integer, Integer>();//用于存储最后的坐标
-    //构造函数用于刚开始将原始数据存储在originalValues，并存储在processValues中用于变化
-    //这块process存储需要用到clone函数
+    private Integer[][] originalValues;
+    private Integer[][] processValues;
+    List<Integer> rowIndex=new ArrayList<Integer>();
+    List<Integer> colIndex=new ArrayList<Integer>();
+    private Map<Integer, Integer> indexMap=new HashMap<Integer, Integer>();
+
+
     public App(Integer[][] values) {
-        //因为输出的为阶矩阵所以行和列一样
+
         int len=values.length;
-        originalValues=values;//原始数据，将orginalValues数组指向原来的数组
-        processValues=MyClone(values);//得到一个新的数组与原始数组没有地址关联
-        boolean flag=false;//表示最后indexMap中存储是行列，还是列行（true:列行）
+        originalValues=values;
+        processValues=MyClone(values);
+        boolean flag=false;
         //1、对数组的每一行减去每行的最小值
         for(int i=0;i<len;i++)
         {
@@ -370,5 +370,10 @@ public class App {
 
         return flag;
 
+    }
+    public static void main(String[] args) {
+        Integer[][] values = {{3,8,2,10},{9,7,5,3},{1,5,4,3},{4,5,7,9}};
+
+        App hungarian1=new App(values);
     }
 }
